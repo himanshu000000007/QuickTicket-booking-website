@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Offers - Bus, Train &amp; Flight Booking</title>
+<style>
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fefefe;
+    color: #222;
+  }
+ header {
+      background: #e61e1e;
+      padding: 1em;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    nav a {
+      color: white;
+      margin-left: 1em;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    nav a {
+      color: white;
+      margin-left: 1em;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+/* Navigation Links */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover Effect */
+nav a:hover {
+  background-color: #4c4cff;
+  color: white;
+}
+
+/* Container for Links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  nav a {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+  /* MOBILE MENU TOGGLE */
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    width: 25px;
+    height: 18px;
+    justify-content: space-between;
+  }
+  .menu-toggle div {
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #2e03da 0%, #f02f4c 100%);
+    padding: 24px 16px 48px;
+    color: white;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.9rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+    user-select: none;
+  }
+  .hero p {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.9;
+    user-select: none;
+  }
+  main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .offer-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .offer-card:hover,
+  .offer-card:focus-within {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    outline: none;
+  }
+  .offer-image {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .offer-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .offer-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #1a73e8;
+  }
+  .offer-desc {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  .offer-price {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #28a745;
+  }
+  @media (max-width: 600px) {
+    main {
+      margin: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Special Offers</h1><nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="main.html">Home</a>
+      
+      <a href="historys.html">My Bookings</a>
+      <a href="offers.html">Offers</a>
+      <a href="help.html">Help</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </nav>
+  
+</header>
+<main>
+  <div class="offers-grid" role="list">
+    <article class="offer-card" tabindex="0" role="listitem" aria-label="Fly High - Flight Discount 25%">
+      <img class="offer-image" src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Airplane flying at sunset" />
+      <div class="offer-content">
+        <h2 class="offer-title">Fly High - Flight Discount 25%</h2>
+        <p class="offer-desc">Book your flight tickets now and enjoy 25% off on selected domestic and international flights.</p>
+        <div class="offer-price">From $99</div>
+      </div>
+    </article>
+    <article class="offer-card" tabindex="0" role="listitem" aria-label="Train Explorer - 30% Off Weekend Trips">
+      <img class="offer-image" src="WhatsApp Image 2025-05-03 at 11.29.17_9ff54d03.jpg" alt="Train moving through green landscape" />
+      <div class="offer-content">
+        <h2 class="offer-title">Train Explorer - 30% Off Weekend Trips</h2>
+        <p class="offer-desc">Discover new cities this weekend with 30% off on train tickets. Limited seats available!</p>
+        <div class="offer-price">Starting at $20</div>
+      </div>
+    </article>
+    <article class="offer-card" tabindex="0" role="listitem" aria-label="Comfort Bus Rides - Buy 2 Get 1 Free">
+      <img class="offer-image" src="WhatsApp Image 2025-05-03 at 11.29.28_1003816d.jpg" alt="Comfortable bus interior seat" />
+      <div class="offer-content">
+        <h2 class="offer-title">Comfort Bus Rides - Buy 2 Get 1 Free</h2>
+        <p class="offer-desc">Travel comfortably by bus. Book two tickets and get the third one free on select routes.</p>
+        <div class="offer-price">Prices vary</div>
+      </div>
+    </article>
+    <article class="offer-card" tabindex="0" role="listitem" aria-label="Early Bird Tickets - Save up to 20%">
+      <img class="offer-image" src="WhatsApp Image 2025-05-03 at 11.32.02_7f400ba8.jpg" alt="Traveler looking out of vehicle window" />
+      <div class="offer-content">
+        <h2 class="offer-title">Early Bird Tickets - Save up to 20%</h2>
+        <p class="offer-desc">Book early for the best prices on bus, train, and flight tickets. Savings up to 20% on select bookings.</p>
+        <div class="offer-price">Save Now!</div>
+      </div>
+    </article>
+    <article class="offer-card" tabindex="0" role="listitem" aria-label="Early Bird Tickets - Save up to 20%">
+      <img class="offer-image" src="WhatsApp Image 2025-05-03 at 11.33.01_5b3dfa19.jpg" alt="Traveler looking out of vehicle window" />
+      <div class="offer-content">
+        <h2 class="offer-title">Early Bird Tickets - Save up to 20%</h2>
+        <p class="offer-desc">Book early for the best prices on bus, train, and flight tickets. Savings up to 20% on select bookings.</p>
+        <div class="offer-price">Save Now!</div>
+      </div>
+    </article>
+    <article class="offer-card" tabindex="0" role="listitem" aria-label="Early Bird Tickets - Save up to 20%">
+      <img class="offer-image" src="WhatsApp Image 2025-05-03 at 11.33.18_b9070889.jpg" alt="Traveler looking out of vehicle window" />
+      <div class="offer-content">
+        <h2 class="offer-title">Early Bird Tickets - Save up to 20%</h2>
+        <p class="offer-desc">Book early for the best prices on bus, train, and flight tickets. Savings up to 20% on select bookings.</p>
+        <div class="offer-price">Save Now!</div>
+      </div>
+    </article>
+  </div>
+</main>
+</body>
+</html>
+

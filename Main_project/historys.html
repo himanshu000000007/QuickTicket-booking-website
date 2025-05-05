@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket History</title>
+  <style>
+
+    /* Base Styles */
+nav {
+  background-color: #1e1e2f;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation Links */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover Effect */
+nav a:hover {
+  background-color: #4c4cff;
+  color: white;
+}
+
+/* Container for Links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  nav a {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+  /* MOBILE MENU TOGGLE */
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    width: 25px;
+    height: 18px;
+    justify-content: space-between;
+  }
+  .menu-toggle div {
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #2e03da 0%, #f02f4c 100%);
+    padding: 24px 16px 48px;
+    color: white;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.9rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+    user-select: none;
+  }
+  .hero p {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.9;
+    user-select: none;
+  }
+    body { font-family: Arial; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <header><nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="main.html">Home</a>
+      
+      <a href="historys.html">My Bookings</a>
+      <a href="offers.html">Offers</a>
+      <a href="help.html">Help</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </nav>
+  </header>
+  <h1>📜 Ticket History</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Seat</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Seats</th>
+      </tr>
+    </thead>
+    <tbody id="historyBody"></tbody>
+  </table>
+
+  <script>
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const historyBody = document.getElementById('historyBody');
+
+    tickets.forEach(ticket => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${ticket.vehicle}</td>
+        <td>${ticket.from}</td>
+        <td>${ticket.to}</td>
+        <td>${ticket.seatType}</td>
+        <td>₹${ticket.price}</td>
+        <td>${ticket.date}</td>
+        <td>${ticket.seats}</td>
+      `;
+      historyBody.appendChild(row);
+    });
+    
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+
+
+  </script>
+</body>
+</html>

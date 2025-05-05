@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ticket Management System</title>
+  <style>body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+  }
+  /* NAVBAR */
+  /* Base Styles */
+  nav {
+    background-color: #1e1e2f;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navigation Links */
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Hover Effect */
+  nav a:hover {
+    background-color: #4c4cff;
+    color: white;
+  }
+  
+  /* Container for Links */
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* Mobile Menu Button */
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Responsive Media Query */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 1rem;
+    }
+  
+    .nav-links.show {
+      display: flex;
+    }
+  
+    nav a {
+      text-align: center;
+      width: 100%;
+    }
+  }
+  
+  /* MOBILE MENU TOGGLE */
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    width: 25px;
+    height: 18px;
+    justify-content: space-between;
+  }
+  .menu-toggle div {
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+  
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #2e03da 0%, #f02f4c 100%);
+    padding: 24px 16px 48px;
+    color: white;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.9rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+    user-select: none;
+  }
+  .hero p {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.9;
+    user-select: none;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  
+  input, select {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    border: none;
+    width: 45%;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    background: #00c6ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background: #0072ff;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .actions button {
+    margin: 5px;
+    background: #ff5e62;
+  }
+  
+  .actions button:hover {
+    background: #ff1e56;
+  }
+  
+  @media (max-width: 600px) {
+    input, select {
+      width: 100%;
+    }
+  }
+  </style>
+</head>
+<body>
+  <header> <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="main.html">Home</a>
+      <a href="historys.html">My Bookings</a>
+      <a href="offers.html">Offers</a>
+      <a href="help.html">Help</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </nav>
+  
+</header>
+  <h1>🎫 Ticket Management System</h1>
+  <div class="container">
+    <form id="ticketForm">
+      
+      <select id="vehicle" required onchange="updatePrice()">
+        <option value="">Select Vehicle</option>
+        <option>Bus</option>
+        <option>Train</option>
+        <option>Flight</option>
+      </select>
+
+      <input type="text" id="from" placeholder="From" required>
+      <input type="text" id="to" placeholder="To" required>
+
+      <select id="seatType" required onchange="updatePrice()">
+        <option value="">Seat Type</option>
+        <option>Economy</option>
+        <option>Business</option>
+      </select>
+
+      <input type="number" id="price" placeholder="Price ₹" required readonly>
+      <input type="date" id="date" required>
+      <input type="number" id="seats" placeholder="No. of Seats" required oninput="updateTotalBill()">
+
+      <p id="totalBill" style="text-align:center; font-size:1.2em; margin-top:-10px;">Total Bill: ₹0</p>
+
+      <button type="submit">Add Ticket</button>
+    </form>
+
+   
+
+    <table id="ticketTable">
+      <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Seat</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Seats</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+<script>const form = document.getElementById('ticketForm');
+  const tableBody = document.querySelector('#ticketTable tbody');
+  
+  let tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+  renderTable();
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const ticket = {
+      id: Date.now(),
+      vehicle: form.vehicle.value,
+      from: form.from.value,
+      to: form.to.value,
+      seatType: form.seatType.value,
+      price: form.price.value,
+      date: form.date.value,
+      seats: form.seats.value
+    };
+    tickets.push(ticket);
+    saveTickets();
+    form.reset();
+    renderTable();
+  });
+  
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+  
+  
+  
+  function saveTickets() {
+    localStorage.setItem('tickets', JSON.stringify(tickets));
+  }
+  
+  function renderTable() {
+    tableBody.innerHTML = '';
+    tickets.forEach(ticket => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${ticket.vehicle}</td>
+        <td>${ticket.from}</td>
+        <td>${ticket.to}</td>
+        <td>${ticket.seatType}</td>
+        <td>₹${ticket.price}</td>
+        <td>${ticket.date}</td>
+        <td>${ticket.seats}</td>
+        <td class="actions">
+          <button onclick="viewTicket(${ticket.id})">View</button>
+          <button onclick="editTicket(${ticket.id})">Edit</button>
+          <button onclick="deleteTicket(${ticket.id})">Delete</button>
+        </td>
+      `;
+      tableBody.appendChild(tr);
+    });
+  }
+  
+  function viewTicket(id) {
+    const ticket = tickets.find(t => t.id === id);
+    const newTab = window.open('', '_blank');
+    newTab.document.write(`
+      <h1>🎟 Ticket Details</h1>
+      <ul>
+        <li><strong>Vehicle:</strong> ${ticket.vehicle}</li>
+        <li><strong>From:</strong> ${ticket.from}</li>
+        <li><strong>To:</strong> ${ticket.to}</li>
+        <li><strong>Seat Type:</strong> ${ticket.seatType}</li>
+        <li><strong>Price:</strong> ₹${ticket.price}</li>
+        <li><strong>Date:</strong> ${ticket.date}</li>
+        <li><strong>Seats:</strong> ${ticket.seats}</li>
+      </ul>
+    `);
+  }
+  
+  function deleteTicket(id) {
+    tickets = tickets.filter(t => t.id !== id);
+    saveTickets();
+    renderTable();
+  }
+  
+  function editTicket(id) {
+    const ticket = tickets.find(t => t.id === id);
+    form.vehicle.value = ticket.vehicle;
+    form.from.value = ticket.from;
+    form.to.value = ticket.to;
+    form.seatType.value = ticket.seatType;
+    form.price.value = ticket.price;
+    form.date.value = ticket.date;
+    form.seats.value = ticket.seats;
+    tickets = tickets.filter(t => t.id !== id);
+    saveTickets();
+  }
+  
+  function openHistory() {
+    const newTab = window.open('', '_blank');
+    const savedTickets = JSON.parse(localStorage.getItem('tickets')) || [];
+  
+    let html = `
+      <html>
+      <head>
+        <title>Ticket History</title>
+        <style>
+          body { font-family: Arial; padding: 20px; }
+          table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+          th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+          th { background-color: #f2f2f2; }
+        </style>
+      </head>
+      <body>
+      <h1>📜 Ticket History</h1>
+      <table>
+        <thead>
+    <tr>
+      <th>Vehicle</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Seat</th>
+      <th>Price</th>
+      <th>Date</th>
+      <th>Seats</th>
+      <th>Total Bill</th>
+    </tr>
+  </thead>
+  
+        <tbody>
+    `;
+  
+    savedTickets.forEach(ticket => {
+      html += `
+        <tr>
+          <td>${ticket.vehicle}</td>
+          <td>${ticket.from}</td>
+          <td>${ticket.to}</td>
+          <td>${ticket.seatType}</td>
+          <td>₹${ticket.price}</td>
+          <td>${ticket.date}</td>
+          <td>${ticket.seats}</td>
+          <td>₹${(parseFloat(ticket.price) * parseInt(ticket.seats)).toFixed(2)}</td>
+  
+        </tr>
+      `;
+    });
+  
+    html += `
+        </tbody>
+      </table>
+      </body>
+      </html>
+    `;
+  
+    newTab.document.write(html);
+  }
+  
+  function openBudgetCalculator() {
+    const savedTickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const total = savedTickets.reduce((sum, t) => sum + (parseFloat(t.price) * parseInt(t.seats)), 0);
+  
+    const newTab = window.open('', '_blank');
+    newTab.document.write(`
+      <html>
+      <head>
+        <title>Budget Calculator</title>
+        <style>
+          body { font-family: Arial; padding: 30px; text-align: center; }
+          h1 { color: #333; }
+          p { font-size: 1.5em; color: #444; }
+        </style>
+      </head>
+      <body>
+        <h1>💰 Budget Calculator</h1>
+        <p>Total Estimated Cost of All Tickets: <strong>₹${total.toFixed(2)}</strong></p>
+      </body>
+      </html>
+    `);
+  }
+  
+  
+  function updateTotalBill() {
+    const price = parseFloat(document.getElementById('price').value);
+    const seats = parseInt(document.getElementById('seats').value);
+    const billDisplay = document.getElementById('totalBill');
+  
+    if (!isNaN(price) && !isNaN(seats)) {
+      billDisplay.textContent = `Total Bill: ₹${(price * seats).toFixed(2)}`;
+    } else {
+      billDisplay.textContent = 'Total Bill: ₹0';
+    }
+  }
+  
+  // Modify updatePrice to also update the total bill
+  function updatePrice() {
+    const vehicle = document.getElementById('vehicle').value;
+    const seatType = document.getElementById('seatType').value;
+    const priceInput = document.getElementById('price');
+  
+    let price = 0;
+  
+    if (vehicle === 'Bus') {
+      price = seatType === 'Economy' ? 300 : 600;
+    } else if (vehicle === 'Train') {
+      price = seatType === 'Economy' ? 500 : 1000;
+    } else if (vehicle === 'Flight') {
+      price = seatType === 'Economy' ? 2000 : 4000;
+    }
+  
+    priceInput.value = price || '';
+    updateTotalBill(); // ← add this line
+  }
+  </script>
+</body>
+</html>

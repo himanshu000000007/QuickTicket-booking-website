@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Help - GoBook</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  
+ 
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: #f5041c;
+      padding: 1rem 2rem;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background: #e61e1e;
+      padding: 1em;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    nav a {
+      color: white;
+      margin-left: 1em;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  nav a {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #2e03da 0%, #f02f4c 100%);
+    padding: 24px 16px 48px;
+    color: white;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.9rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+    user-select: none;
+  }
+  .hero p {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.9;
+    user-select: none;
+  }
+    h1 {
+      margin: 0;
+      font-weight: 700;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section.faq {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 1rem;
+    }
+    details {
+      margin: 1rem 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 1rem;
+      background: #fafafa;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    details[open] {
+      background: #e7f1ff;
+    }
+    summary {
+      font-weight: 600;
+      font-size: 1.1rem;
+      outline: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::before {
+      content: "▶";
+      display: inline-block;
+      margin-right: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .contact {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .contact a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact a:hover, .contact a:focus {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+  </head>
+  <body>
+  <header>
+    <h1>Help &amp; Support</h1>
+    <nav>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="nav-links" id="navLinks">
+       
+        <a href="main.html">Home</a>
+        <a href="historys.html">My Bookings</a>
+        <a href="offers.html">Offers</a>
+        <a href="help.html">Help</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html">Signup</a>
+      </div>
+    </nav>
+    
+  </header>
+  <main>
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <details>
+        <summary>How do I book bus, train, or flight tickets?</summary>
+        <p>Start by selecting your travel type (bus, train, or flight) on the Home page. Then choose your origin, destination, and dates. Select your preferred option and follow the checkout steps.</p>
+      </details>
+      <details>
+        <summary>Can I change or cancel my bookings?</summary>
+        <p>You can modify or cancel eligible bookings through the <strong>My Bookings</strong> page. Cancellation policies vary by transportation type and provider.</p>
+      </details>
+      <details>
+        <summary>What payment methods are available?</summary>
+        <p>We accept credit cards, debit cards, and PayPal. All payments are securely processed.</p>
+      </details>
+      <details>
+        <summary>How do I get my tickets after booking?</summary>
+        <p>Tickets will be emailed to the address you provide after purchase. You can also access them anytime on the <strong>My Bookings</strong> page.</p>
+      </details>
+    </section>
+    <div class="contact" tabindex="0">
+      <p><strong>Contact Us</strong></p>
+      <p>Email: <a href="mailto:himanshubhukar5000@gmail.com">himanshubooking@gmail.com</a></p>
+      <p>Phone: <a href="tel:+916375104782">+91 63751-04782</a></p>
+    </div>
+  </main>
+  <script>function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }</script>
+  </body>
+  </html>
+  

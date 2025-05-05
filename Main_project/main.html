@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>QuickTicket - Bus Tickets & Travel Portal Clone</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    background-color: #ea3c38; /* redbus red */
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+    user-select: none;
+  }
+  .navbar .logo img {
+    height: 30px;
+    margin-right: 8px;
+  }
+  .navbar nav {
+    display: flex;
+    gap: 20px;
+  }
+  .navbar nav a {
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 6px 8px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  .navbar nav a:hover, .navbar nav a:focus {
+    background: rgba(255 255 255 / 0.2);
+    outline: none;
+  }
+  /* MOBILE MENU TOGGLE */
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    width: 25px;
+    height: 18px;
+    justify-content: space-between;
+  }
+  .menu-toggle div {
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #2e03da 0%, #f02f4c 100%);
+    padding: 24px 16px 48px;
+    color: white;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.9rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+    user-select: none;
+  }
+  .hero p {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.9;
+    user-select: none;
+  }
+
+  /* SEARCH FORM */
+  .search-form {
+    background: #fff;
+    max-width: 550px;
+    margin: 24px auto 0;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: #222;
+  }
+  .form-group {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  input[type=text], input[type=date] {
+    font-size: 1.1rem;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    font-weight: 600;
+    outline-offset: 2px;
+  }
+  input[type=text]:focus, input[type=date]:focus {
+    border-color: #ea3c38;
+    outline: none;
+  }
+  .two-cols {
+    display: flex;
+    gap: 12px;
+  }
+  .two-cols .form-group {
+    flex: 1;
+  }
+  button.search-btn {
+    background-color: #ea3c38;
+    border-radius: 6px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px;
+    flex: 1 1 100%;
+    margin-top: 8px;
+    box-shadow: 0 4px 10px rgb(234 60 56 / 0.6);
+    transition: background-color 0.3s ease;
+  }
+  button.search-btn:hover, button.search-btn:focus {
+    background-color: #c22a26;
+    outline: none;
+  }
+  .error-msg {
+    color: #fff;
+    background: #cc0000;
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    user-select: none;
+  }
+
+  /* POPULAR ROUTES SECTION */
+  .popular-routes {
+    max-width: 450px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  .popular-routes h2 {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: #ea3c38;
+    user-select: none;
+  }
+  .routes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .route {
+    background: #f44336;
+    color: white;
+    font-weight: 700;
+    border-radius: 18px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    user-select: none;
+    box-shadow: 0 3px 6px rgb(244 67 54 / 0.6);
+    transition: background-color 0.3s ease;
+  }
+  .route:hover, .route:focus {
+    background: #c22a26;
+    outline: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background-color: #222;
+    color: #bbb;
+    font-size: 0.8rem;
+    padding: 20px 16px;
+    text-align: center;
+    user-select: none;
+  }
+  footer a {
+    color: #777;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+  }
+  footer a:hover, footer a:focus {
+    color: #ea3c38;
+    outline: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 450px) {
+    .two-cols {
+      flex-direction: column;
+    }
+    .search-form {
+      max-width: 100%;
+      padding: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header class="navbar" role="banner">
+    <a href="#" class="logo" aria-label=" Logo">
+      <img src="WhatsApp Image 2025-05-03 at 08.42.50_f036872c.jpg" alt="RedBus Logo" />
+      
+    </a>
+        <div class="logo">QuickTicket</div>
+        <nav>
+          <a href="main.html">Home</a>
+          <a href="historys.html">My Bookings</a>
+          <a href="offers.html">Offers</a>
+          <a href="help.html">Help</a>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Signup</a>
+        </nav>
+      </header>
+      <div style="text-align: center; margin-top: 20px; font-size: large;">
+
+        <button style=" margin-bottom:1rem; background-color: hsla(198, 99%, 52%, 0.8); border-radius: 5rem; font-size: 2rem;" onclick="window.open('book.html')"> Ticket Book</button>
+      </div>
+  <section class="hero" role="main" aria-label="Bus Ticket Booking">
+    <h1>Book Cheap Bus Tickets, Bus Hire and More</h1>
+    <p>Find your perfect bus journey on the largest bus platform in India</p>
+
+    <!-- Search form -->
+    <form id="searchForm" class="search-form" aria-label="Bus Search Form" novalidate>
+      <div class="two-cols" style="width:100%;">
+        <div class="form-group">
+          <label for="fromInput">From</label>
+          <input type="text" id="fromInput" name="from" placeholder="Enter city or bus stop" autocomplete="off" aria-required="true" aria-describedby="fromHelp" />
+        </div>
+        <div class="form-group">
+          <label for="toInput">To</label>
+          <input type="text" id="toInput" name="to" placeholder="Enter city or bus stop" autocomplete="off" aria-required="true" aria-describedby="toHelp" />
+        </div>
+      </div>
+      <div class="form-group" style="flex: 1 1 100%;">
+        <label for="dateInput">Date of journey</label>
+        <input type="date" id="dateInput" name="date" aria-required="true" aria-describedby="dateHelp" />
+      </div>
+      <button type="submit" class="search-btn" aria-label="Search Buses">Search Buses</button>
+      <div id="errorMsg" role="alert" class="error-msg" style="display:none;"></div>
+    </form>
+  </section>
+  <div style="text-align: center; margin-top: 20px;">
+    <button style="background-color: hsla(204, 91%, 58%, 0.8); border-radius: 0.5rem; font-size: 1.6rem;" onclick="window.open('historys.html')">📜 View History</button>
+    <button style="padding-right: 1.6rem;background-color:  hsla(204, 91%, 58%, 0.8); border-radius: 0.5rem; font-size: 1.6rem;" onclick="window.open('budget.html')">💰  Calculator  </button>
+
+  </div>
+
+  <section class="popular-routes" aria-label="Popular Routes">
+    <h2>Popular Bus Routes</h2>
+    <div class="routes-list">
+      <a href="#" class="route" tabindex="0" aria-label="Route Delhi to Jaipur">Delhi - Jaipur</a>
+      <a href="#" class="route" tabindex="0" aria-label="Route Mumbai to Pune">Mumbai - Pune</a>
+      <a href="#" class="route" tabindex="0" aria-label="Route Bangalore to Chennai">Bangalore - Chennai</a>
+      <a href="#" class="route" tabindex="0" aria-label="Route Hyderabad to Bangalore">Hyderabad - Bangalore</a>
+      <a href="#" class="route" tabindex="0" aria-label="Route Kolkata to Durgapur">Kolkata - Durgapur</a>
+    </div>
+  </section>
+
+  <footer aria-label="Footer">
+    <p>© 2025 QuickTicket. This is a frontend-only .</p>
+    <p>
+      <a href="terms.html" tabindex="0">Terms & Conditions</a> | 
+      <a href="terms.html" tabindex="0">Privacy Policy</a> | 
+      <a href="help.html" tabindex="0">Help</a>
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      // Set min date for journey date input as today
+      var dateInput = document.getElementById('dateInput');
+      var today = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', today);
+      dateInput.value = today;
+
+      var searchForm = document.getElementById('searchForm');
+      var errorMsg = document.getElementById('errorMsg');
+
+      // Basic validation: from, to must be filled and distinct; date must be >= today
+      searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        errorMsg.style.display = 'none';
+        var fromVal = document.getElementById('fromInput').value.trim();
+        var toVal = document.getElementById('toInput').value.trim();
+        var dateVal = dateInput.value;
+
+        if (!fromVal) {
+          showError('Please enter starting location.');
+          return;
+        }
+        if (!toVal) {
+          showError('Please enter destination location.');
+          return;
+        }
+        if (fromVal.toLowerCase() === toVal.toLowerCase()) {
+          showError('Starting and destination locations must be different.');
+          return;
+        }
+        if (!dateVal) {
+          showError('Please select date of journey.');
+          return;
+        }
+        var selectedDate = new Date(dateVal);
+        var now = new Date();
+        // Ignore time portion for comparison
+        selectedDate.setHours(0,0,0,0);
+        now.setHours(0,0,0,0);
+        if (selectedDate < now) {
+          showError('Selected date cannot be in the past.');
+          return;
+        }
+
+        // On success show alert emulating search:
+        alert('Searching buses from "' + fromVal + '" to "' + toVal + '" on ' + dateVal + '.\nThis is a frontend demo; no real search is performed.');
+      });
+
+      function showError(msg) {
+        errorMsg.textContent = msg;
+        errorMsg.style.display = 'block';
+        errorMsg.focus();
+      }
+    })();
+  </script>
+</body>
+</html>
+
+```
+
